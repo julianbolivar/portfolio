@@ -1,14 +1,16 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
-import Home from "containers/Home";
-import Notfound from "containers/NotFound";
+import Main from "pages/Main";
+import Notfound from "pages/NotFound";
 
-const App: React.FC<{}> = () => {
+import "./App.css";
+
+const App: React.FC = () => {
   return (
     <HashRouter basename="/">
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Main} />
         <Route component={Notfound} />
       </Switch>
     </HashRouter>

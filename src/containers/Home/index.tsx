@@ -1,7 +1,9 @@
 import React from "react";
 
-const Home: React.FC<{}> = () => {
-  return <p>CV en desarrollo</p>;
+import { Title } from "components/ui/Text";
+
+const Home: React.FC = () => {
+  return <Title>Inicio</Title>;
 };
 
 export default Home;

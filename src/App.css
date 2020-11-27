@@ -1,0 +1,31 @@
+/*
+  1. Posicionamiento
+  2. Modelo de caja (Box model)
+  3. Tipografía
+  4. Visuales
+  5. Otros
+*/
+
+:root {
+  /* Colores */
+
+  --background: #f9f9ff;
+  --blue: #25ced1;
+  --orange: #ff8a5b;
+  --gray: #f4f4f4;
+  --white: #ffffff;
+  --black: #121212;
+  --gray: #999;
+  --dark-gray: #495057;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Nunito", sans-serif;
+}
