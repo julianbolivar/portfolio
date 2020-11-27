@@ -15,10 +15,6 @@ const baseButton = css`
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 
-  &:hover {
-    opacity: 0.5;
-  }
-
   &:active {
     opacity: 1;
     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),

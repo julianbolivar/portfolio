@@ -8,8 +8,8 @@
 
 :root {
   /* Colores */
-
   --background: #f9f9ff;
+  --background-blur: #f9f9ffbf;
   --blue: #25ced1;
   --orange: #ff8a5b;
   --gray: #f4f4f4;
@@ -17,6 +17,8 @@
   --black: #121212;
   --gray: #999;
   --dark-gray: #495057;
+
+  /* */
 }
 
 * {
