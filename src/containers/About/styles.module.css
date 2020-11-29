@@ -1,6 +1,6 @@
-.home {
-  background-color: var(--orange);
-  height: 100%;
+.about {
+  background-color: var(--blue);
+  min-height: 100%;
 
   display: flex;
   justify-content: center;
