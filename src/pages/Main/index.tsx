@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import useMenuInteractions, { menuItems } from "./useMenuInteraction";
+import MenuListItem from "components/ui/MenuListItem";
 import { FloatingButton, IconButton } from "components/ui/Button";
-import { Title } from "components/ui/Text";
+import { Title, Caption } from "components/ui/Text";
 
 import styles from "./styles.module.css";
 
@@ -15,6 +15,7 @@ const Main: React.FC = () => {
     goToSectionWithId,
     showNav,
     setShowNav,
+    currentSection,
   } = useMenuInteractions();
 
   const classForNav = showNav
@@ -35,21 +36,25 @@ const Main: React.FC = () => {
 
         <ul className={styles.nav__ul}>
           {menuItems.map((item) => {
-            const { key, path, name } = item;
+            const { key, section, name, icon } = item;
+            const active = currentSection === section;
             return (
               <li key={key}>
-                <Link
-                  to={`?section=${path}`}
-                  onClick={() => goToSectionWithId(path)}
-                >
-                  {name}
-                </Link>
+                <MenuListItem
+                  icon={icon}
+                  name={name}
+                  section={section}
+                  onClick={() => goToSectionWithId(section)}
+                  active={active ? "true" : "false"}
+                />
               </li>
             );
           })}
         </ul>
 
-        <footer className={styles.nav__footer}>Footer</footer>
+        <footer className={styles.nav__footer}>
+          <Caption>2020 - Julián Bolívar Gutiérrez</Caption>{" "}
+        </footer>
       </nav>
       <main className={styles.main}>
         <FloatingButton
@@ -66,9 +71,9 @@ const Main: React.FC = () => {
         >
           <div className={styles.main__container__content}>
             {menuItems.map((item) => {
-              const { key, path, component: Component } = item;
+              const { key, section, component: Component } = item;
 
-              return <Component key={key} id={path} />;
+              return <Component key={key} id={section} />;
             })}
           </div>
         </div>

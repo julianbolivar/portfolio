@@ -1,5 +1,13 @@
 import { useCallback, useRef, useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import {
+  faHome,
+  faUserCheck,
+  faBriefcase,
+  faGraduationCap,
+  faUserTie,
+  faComments,
+} from "@fortawesome/free-solid-svg-icons";
 import zenscroll from "zenscroll";
 
 import { ItemMenu } from "types/itemMenu";
@@ -11,21 +19,45 @@ import Profiles from "containers/Profiles";
 export const menuItems: ItemMenu[] = [
   {
     key: 0,
-    path: "home",
+    section: "home",
     name: "Inicio",
     component: Home,
+    icon: faHome,
   },
   {
     key: 1,
-    path: "about",
+    section: "about",
     name: "Acerca de mi",
     component: About,
+    icon: faUserCheck,
   },
   {
     key: 2,
-    path: "profiles",
-    name: "Perfiles",
+    section: "services",
+    name: "Servicios",
     component: Profiles,
+    icon: faBriefcase,
+  },
+  {
+    key: 3,
+    section: "experience",
+    name: "Experiencia",
+    component: About,
+    icon: faGraduationCap,
+  },
+  {
+    key: 4,
+    section: "workers",
+    name: "Trabajos",
+    component: Home,
+    icon: faUserTie,
+  },
+  {
+    key: 5,
+    section: "contact",
+    name: "Contacto",
+    component: About,
+    icon: faComments,
   },
 ];
 
@@ -34,6 +66,9 @@ function useMenuInteraction() {
   const history = useHistory();
   const search = useLocation().search;
   const [showNav, setShowNav] = useState(false);
+
+  const params = new URLSearchParams(search);
+  const currentSection = params.get("section");
 
   const goToSectionWithId = useCallback((id) => {
     const targetElement = document.getElementById(id);
@@ -48,8 +83,8 @@ function useMenuInteraction() {
       const scrollHeight = scrollRef.current?.offsetHeight || 0;
       const scrollCenter = scrollTop + scrollHeight / 2;
 
-      const focusSection = menuItems.find(({ path }) => {
-        const focusElement = document.getElementById(path);
+      const focusSection = menuItems.find(({ section }) => {
+        const focusElement = document.getElementById(section);
         if (!focusElement) return false;
 
         const topFocusEle = focusElement!.offsetTop;
@@ -58,8 +93,8 @@ function useMenuInteraction() {
         return scrollCenter >= topFocusEle && scrollCenter < bottomFocusEle;
       });
 
-      const { path } = focusSection || {};
-      if (path) history.replace(`?section=${path}`);
+      const { section } = focusSection || {};
+      if (section) history.replace(`?section=${section}`);
     },
     // eslint-disable-next-line
     []
@@ -67,13 +102,15 @@ function useMenuInteraction() {
 
   useEffect(
     () => {
-      const params = new URLSearchParams(search);
-      let section = params.get("section");
-      if (!section) {
-        const firstSection = menuItems[0].path;
-        history.replace(`?section=${firstSection}`);
-        section = firstSection;
+      const allSections = menuItems.map(({ section }) => section);
+      // const params = new URLSearchParams(search);
+      let section = currentSection;
+
+      if (!section || !allSections.includes(section)) {
+        section = menuItems[0].section;
+        history.replace(`?section=${section}`);
       }
+
       goToSectionWithId(section);
 
       const scrollElement = scrollRef.current!;
@@ -87,7 +124,7 @@ function useMenuInteraction() {
     []
   );
 
-  return { scrollRef, goToSectionWithId, showNav, setShowNav };
+  return { scrollRef, goToSectionWithId, showNav, setShowNav, currentSection };
 }
 
 export default useMenuInteraction;

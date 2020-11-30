@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 export type Section = {
   id: string;
@@ -6,7 +7,8 @@ export type Section = {
 
 export type ItemMenu = {
   key: number;
-  path: string;
+  section: string;
   name: string;
   component: FC<Section>;
+  icon?: IconDefinition;
 };
