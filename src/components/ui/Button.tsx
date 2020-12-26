@@ -27,14 +27,14 @@ const baseButton = css`
 `;
 
 const FloatingButton = styled.button`
-  width: 48px;
-  height: 48px;
+  width: 4.4rem;
+  height: 4.4rem;
   ${baseButton}
 `;
 
 const IconButton = styled.button`
-  width: 48px;
-  height: 48px;
+  width: 4.8rem;
+  height: 4.8rem;
   border: none;
   outline: none;
 

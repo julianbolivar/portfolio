@@ -18,9 +18,11 @@ const ItemListContainer = styled.div`
   align-items: center;
   cursor: pointer;
 
-  &:hover {
-    & * {
-      color: var(--dark-gray);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      & * {
+        color: var(--orange);
+      }
     }
   }
 `;
