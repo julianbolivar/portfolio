@@ -26,6 +26,17 @@ const baseButton = css`
   }
 `;
 
+const RaisedButton = styled.button`
+  ${baseButton}
+  padding: 0.8rem 1.8rem;
+  height: 4.4rem;
+
+  border-radius: 2.2rem;
+  background-color: var(--blue);
+  box-shadow: none;
+  color: var(--white);
+`;
+
 const FloatingButton = styled.button`
   width: 4.4rem;
   height: 4.4rem;
@@ -55,4 +66,4 @@ const IconButton = styled.button`
   }
 `;
 
-export { FloatingButton, IconButton };
+export { RaisedButton, FloatingButton, IconButton };
