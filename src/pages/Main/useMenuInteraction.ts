@@ -2,11 +2,8 @@ import { useCallback, useRef, useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import {
   faHome,
-  faUserCheck,
-  faBriefcase,
-  faGraduationCap,
-  faUserTie,
-  faComments,
+  faAddressCard,
+  faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import zenscroll from "zenscroll";
 
@@ -14,50 +11,29 @@ import { ItemMenu } from "types/itemMenu";
 
 import Home from "containers/Home";
 import About from "containers/About";
-import Profiles from "containers/Profiles";
+import Portfolio from "containers/Portfolio";
 
 export const menuItems: ItemMenu[] = [
   {
     key: 0,
     section: "home",
-    name: "Inicio",
+    name: "Home",
     component: Home,
     icon: faHome,
   },
   {
     key: 1,
     section: "about",
-    name: "Acerca de mi",
+    name: "About",
     component: About,
-    icon: faUserCheck,
+    icon: faAddressCard,
   },
   {
     key: 2,
-    section: "services",
-    name: "Servicios",
-    component: Profiles,
-    icon: faBriefcase,
-  },
-  {
-    key: 3,
-    section: "experience",
-    name: "Experiencia",
-    component: About,
-    icon: faGraduationCap,
-  },
-  {
-    key: 4,
-    section: "workers",
-    name: "Trabajos",
-    component: Home,
-    icon: faUserTie,
-  },
-  {
-    key: 5,
-    section: "contact",
-    name: "Contacto",
-    component: About,
-    icon: faComments,
+    section: "portfolio",
+    name: "Portfolio",
+    component: Portfolio,
+    icon: faFolderOpen,
   },
 ];
 
