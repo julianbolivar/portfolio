@@ -4,8 +4,11 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 import { Title, Subtitle, Paragraph } from "components/ui/Text";
+import { ArrowLeft, ArrowRight } from "components/misc/ArrowsSlider";
 import { DotsContainer, Dot } from "components/ui/Dots";
 import ImageDropShadow from "components/awesome/ImageDropShadow";
+
+import { Project } from "types/Project";
 
 const NavigationWrapper = styled.div`
   position: relative;
@@ -50,14 +53,7 @@ const TechItem = styled(Paragraph)`
   line-height: 4rem;
 `;
 
-interface ProjectSectionProps {
-  imagesSources?: string[];
-  name: string;
-  description: string;
-  techItems?: string[];
-}
-
-const ProjectSection: FC<ProjectSectionProps> = (props) => {
+const ProjectSection: FC<Project> = (props) => {
   const { name, description, imagesSources, techItems } = props;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -116,21 +112,38 @@ const ProjectSection: FC<ProjectSectionProps> = (props) => {
         </KeenSlider>
 
         {slider && (
-          <DotsContainer>
-            {[...Array(dotsSize)].map((_, idx) => {
-              return (
-                <Dot
-                  key={idx}
-                  active={currentSlide === idx}
-                  onClick={() => {
-                    slider.moveToSlideRelative(idx);
-                  }}
-                />
-              );
-            })}
-          </DotsContainer>
+          <>
+            <ArrowLeft
+              onClick={(e) => {
+                e.stopPropagation();
+                slider.prev();
+              }}
+              disabled={currentSlide === 0}
+            />
+            <ArrowRight
+              onClick={(e) => {
+                e.stopPropagation();
+                slider.next();
+              }}
+              disabled={currentSlide === dotsSize - 1}
+            />
+          </>
         )}
       </NavigationWrapper>
+
+      <DotsContainer>
+        {[...Array(dotsSize)].map((_, idx) => {
+          return (
+            <Dot
+              key={idx}
+              active={currentSlide === idx}
+              onClick={() => {
+                slider.moveToSlideRelative(idx);
+              }}
+            />
+          );
+        })}
+      </DotsContainer>
 
       <SpecsContainer>
         <SpecsCard>
