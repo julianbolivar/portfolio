@@ -2,8 +2,8 @@ import { useCallback, useRef, useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import {
   faHome,
-  faAddressCard,
-  faFolderOpen,
+  faUserCheck,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import zenscroll from "zenscroll";
 
@@ -26,14 +26,14 @@ export const menuItems: ItemMenu[] = [
     section: "about",
     name: "About",
     component: About,
-    icon: faAddressCard,
+    icon: faUserCheck,
   },
   {
     key: 2,
-    section: "portfolio",
-    name: "Portfolio",
+    section: "works",
+    name: "Works",
     component: Portfolio,
-    icon: faFolderOpen,
+    icon: faLayerGroup,
   },
 ];
 

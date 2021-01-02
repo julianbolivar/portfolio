@@ -4,10 +4,10 @@ import styled, { css } from "styled-components";
 interface ImageDropShadowProps {
   className?: string;
   src: string;
-  applyBorderRadius?: boolean;
+  borderRadius?: number | string;
 }
 const commonImage = css<ImageDropShadowProps>`
-  border-radius: ${(props) => (props.applyBorderRadius ? "1.8rem" : "none")};
+  border-radius: ${(props) => `${props.borderRadius}`};
   width: 100%;
   height: auto;
 `;
@@ -17,7 +17,7 @@ const Container = styled.div`
   overflow: visible;
 `;
 
-const Shadow = styled.img`
+const Shadow = styled.img<ImageDropShadowProps>`
   ${commonImage}
   position: absolute;
   left: 50%;
@@ -30,23 +30,23 @@ const Shadow = styled.img`
   opacity: 0.6;
 `;
 
-const Image = styled.img`
+const Image = styled.img<ImageDropShadowProps>`
   ${commonImage}
   position: relative;
 `;
 
 const ImageDropShadow: React.FC<ImageDropShadowProps> = (props) => {
-  const { src, className } = props;
+  const { src, className, borderRadius } = props;
   return (
     <Container className={className}>
-      <Shadow src={src} />
-      <Image src={src} />
+      <Shadow src={src} borderRadius={borderRadius} />
+      <Image src={src} borderRadius={borderRadius} />
     </Container>
   );
 };
 
 ImageDropShadow.defaultProps = {
-  applyBorderRadius: false,
+  borderRadius: 0,
 };
 
 export default ImageDropShadow;
